@@ -13,6 +13,14 @@ u: grace
 Start server
 rails s -p 3001
 
+OR TO START ALL SERVERS
+
+bin/rake start
+
+THEN TO START PROD BUILD
+
+bin/rake start:production
+
 
 For react frontend
 ----------

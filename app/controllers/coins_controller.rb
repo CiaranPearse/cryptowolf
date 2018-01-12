@@ -3,14 +3,14 @@ class CoinsController < ApplicationController
 
   # GET /coins
   def index
-    @coins = Coin.all
-
+    @coins = Coin.select("id, name").all
     render json: @coins
   end
 
   # GET /coins/1
   def show
-    render json: @coin
+    @coin = Coin.find(params[:id])
+    render json: @coin.to_json(:include => { :exchanges => { :only => [:id, :name] }})
   end
 
   # POST /coins

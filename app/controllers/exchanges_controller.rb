@@ -3,14 +3,14 @@ class ExchangesController < ApplicationController
 
   # GET /exchanges
   def index
-    @exchanges = Exchange.all
-
+    @exchanges = Exchange.select("id, name").all
     render json: @exchanges
   end
 
   # GET /exchanges/1
   def show
-    render json: @exchange
+    @exchange = Exchange.find(params[:id])
+    render json: @exchange.to_json(:include => { :coins => { :only => [:id, :name] }})
   end
 
   # POST /exchanges
